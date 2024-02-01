@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import MovieCard from './components/MovieCard';
+
 
 function App() {
+
+    const [movies,setMovies] = useState([])
+  useEffect(()=>{
+
+    fetch('https://api.tvmaze.com/search/shows?q=all')
+    .then((res)=> res.json())
+    .then((data)=> {console.log(data); setMovies(data)})
+
+  },[])
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='grid grid-cols-7 gap-4 p-3'>
+      {movies.map((item) =>{
+        return(item.show.image?<MovieCard  item={item}/>:null)
+      })}
     </div>
   );
 }
