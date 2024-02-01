@@ -31,13 +31,13 @@ const Popup = ({ isOpen, onClose ,movie}) => {
   return (
     <div className={`fixed inset-0 flex items-center justify-center ${isOpen ? '' : 'hidden'}`}>
       <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-      <form className="bg-white p-6 rounded shadow-lg z-10">
+      <div className="bg-white p-6 rounded shadow-lg z-10">
         <h2 className="text-2xl font-bold mb-4"   onChange={(e)=>{setTicket({...ticket,"movie_name": e.target.value})}} >{movie.name}</h2>
         <p className=" font-bold mb-4">Ticket no: <span className=' font-normal'>{ticket.ticket_no}</span></p>
         <p className=" font-bold mb-4">Date: <span className=' font-normal'>{new Date().toLocaleDateString()}</span></p>
         <input
           type="text"
-          required
+          requir
           value={ticket.cxname}
           onChange={(e)=>{setTicket({...ticket,"cxname": e.target.value,"movie_name":movie.name})}}
           className="w-full border p-2 mb-4"
@@ -64,7 +64,7 @@ const Popup = ({ isOpen, onClose ,movie}) => {
             Cancel
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
